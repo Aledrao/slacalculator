@@ -2,6 +2,9 @@ package br.com.asas.slacalculator.controller;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDateTime;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -71,5 +74,18 @@ public class CalculaTempoTest {
 		
 		calculaTempo.calculaHorasUteisPorDia(horarioInicio,
 				horarioAlmoco, horarioRetorno, horarioFechamento);
+	}
+	
+	@Test
+	public void deveriaCalcularTempo_sucesso() throws Exception {
+		int horarioInicioExpediente = 8;
+		int horarioInicioAlmoco = 12;
+		int horarioFimAlmoco = 13;
+		int horarioFimExpediente = 18;
+		LocalDateTime prazoEntrega = LocalDateTime.now().plusDays(1);
+		
+		int horas = calculaTempo.calcularHoras(horarioInicioExpediente, horarioInicioAlmoco, horarioFimAlmoco, horarioFimExpediente, prazoEntrega);
+		
+		Assert.assertEquals(24, horas);
 	}
 }

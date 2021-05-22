@@ -39,7 +39,7 @@ public class CalculaTempo {
 		
 		if(dataInicio.getYear() <= agora.getYear()) {
 			if(dataInicio.getHour() > horaInicio && dataInicio.getHour() < horaAlmoco) {
-								
+				
 			}
 		} else {
 			throw new Exception("A data e hora informada precisa ser maior ou igual a data e hora atual.");
@@ -50,6 +50,12 @@ public class CalculaTempo {
 				
 		
 		return totalHoras;
+	}
+
+	public int calcularHoras(int horarioInicioExpediente, int horarioInicioAlmoco, int horarioFimAlmoco,
+			int horarioFimExpediente, LocalDateTime prazoEntrega) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
