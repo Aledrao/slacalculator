@@ -20,7 +20,7 @@ public class CalculaTempo {
 			totalHoras = horasComeco + horaFim;
 		}		
 		else {
-			throw new Exception("Caso a hora de almoço seja diferente de zero, é necessário informar a hora de retorno e vice-versa.");
+			throw new Exception("Caso a hora de almoï¿½o seja diferente de zero, ï¿½ necessï¿½rio informar a hora de retorno e vice-versa.");
 		}
 		
 		return totalHoras;
@@ -52,10 +52,42 @@ public class CalculaTempo {
 		return totalHoras;
 	}
 
-	public int calcularHoras(int horarioInicioExpediente, int horarioInicioAlmoco, int horarioFimAlmoco,
-			int horarioFimExpediente, LocalDateTime prazoEntrega) {
-		// TODO Auto-generated method stub
+	public int calcularHorasFaltantes(int horarioInicioExpediente, int horarioInicioAlmoco, int horarioFimAlmoco,
+									  int horarioFimExpediente, LocalDateTime prazoEntrega) {
+		//Transforma a data e hora informada.
+		int diaPrazo = prazoEntrega.getDayOfMonth();
+		int mesPrazo = prazoEntrega.getMonthValue();
+		int anoPrazo = prazoEntrega.getYear();
+		int horaPrazo = prazoEntrega.getHour();
+		int minutoPrazo = prazoEntrega.getMinute();
+		int segundoPrazo = prazoEntrega.getSecond();
+		
+		//Transforma a data e hora atual
+		LocalDateTime agora = LocalDateTime.now();
+		int diaAgora = agora.getDayOfMonth();
+		int mesAgora = agora.getMonthValue();
+		int anoAgora = agora.getYear();
+		int horaAgora = agora.getHour();
+		int minutoAgora = agora.getMinute();
+		int segundoAgora = agora.getSecond();
+		
+		int segundosCalculados = calculaSegundosFaltantes(segundoPrazo, segundoAgora);
+		int minutosCalculados = calculaMinutosFaltantes(minutoPrazo, minutoAgora);
+		
 		return 0;
 	}
 
+	private int calculaSegundosFaltantes(int segundoPrazo, int segundoAgora) {
+		if(segundoPrazo > segundoAgora) {
+			return segundoPrazo - segundoAgora;
+		}
+		return segundoAgora - segundoPrazo;
+	}
+
+	private int calculaMinutosFaltantes(int minutoPrazo, int minutoAgora) {
+		if(minutoPrazo > minutoPrazo) {
+			return minutoPrazo - minutoAgora;
+		}
+		return minutoAgora - minutoPrazo;
+	}
 }
